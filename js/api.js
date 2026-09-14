@@ -19,13 +19,48 @@ const API = (() => {
     return hit.value;
   }
 
+  let jsonpCounter = 0;
+
+  // Loads a URL via a <script> tag instead of fetch(). Apps Script Web Apps
+  // serve their real response from a redirected googleusercontent.com URL
+  // that doesn't carry CORS headers, so fetch() gets blocked reading it even
+  // though the deployment itself is genuinely public. A <script> tag isn't
+  // subject to that restriction, so this is the standard workaround.
+  function jsonpRequest(url) {
+    return new Promise((resolve, reject) => {
+      const callbackName = "__gjks_cb_" + (jsonpCounter++) + "_" + Date.now();
+      const script = document.createElement("script");
+
+      const cleanup = () => {
+        delete window[callbackName];
+        script.remove();
+      };
+      const timer = setTimeout(() => {
+        cleanup();
+        reject(new Error("timeout"));
+      }, 15000);
+
+      window[callbackName] = (data) => {
+        clearTimeout(timer);
+        cleanup();
+        resolve(data);
+      };
+      script.onerror = () => {
+        clearTimeout(timer);
+        cleanup();
+        reject(new Error("script load failed"));
+      };
+
+      script.src = url + (url.includes("?") ? "&" : "?") + "callback=" + callbackName;
+      document.head.appendChild(script);
+    });
+  }
+
   async function callBackend(action, params) {
     const url = new URL(CONFIG.API_URL);
     url.searchParams.set("action", action);
     Object.entries(params || {}).forEach(([k, v]) => url.searchParams.set(k, v));
-    const res = await fetch(url.toString());
-    if (!res.ok) throw new Error("network");
-    const json = await res.json();
+    const json = await jsonpRequest(url.toString());
     if (json && json.error) throw new Error(json.error);
     return json;
   }
