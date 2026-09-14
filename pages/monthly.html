@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মাসিক হিসাব — ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি</title>
+<meta name="description" content="মাসভিত্তিক লেনদেনের বিস্তারিত হিসাব — তারিখ, বিবরণ, ক্যাটাগরি, আয়, ব্যয় ও ভাউচারসহ।">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html">
+      <span class="brand-text">
+        <strong>ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি</strong>
+        <span>মাঠের উপকমিটি</span>
+      </span>
+    </a>
+    <button class="nav-toggle" aria-label="মেনু" aria-expanded="false">☰ মেনু</button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="../index.html">হোম</a></li>
+        <li><a href="organization.html">সংগঠন</a></li>
+        <li><a href="committee.html">কমিটি</a></li>
+        <li><a href="accounts.html">আর্থিক হিসাব</a></li>
+        <li><a href="monthly.html">মাসিক হিসাব</a></li>
+        <li><a href="archive.html">অর্থবছরের আর্কাইভ</a></li>
+        <li><a href="reports.html">প্রতিবেদন</a></li>
+        <li><a href="contact.html">যোগাযোগ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h1>মাসিক হিসাব</h1>
+      <p>অর্থবছর ও মাস অনুযায়ী প্রতিটি লেনদেনের বিস্তারিত তথ্য।</p>
+    </div>
+
+    <form class="filters" id="filterForm">
+      <select id="filterYear" aria-label="অর্থবছর"></select>
+      <select id="filterMonth" aria-label="মাস"></select>
+      <select id="filterCategory" aria-label="ক্যাটাগরি"></select>
+      <select id="filterType" aria-label="আয়/ব্যয়">
+        <option value="">আয়/ব্যয় — সব</option>
+        <option value="income">শুধু আয়</option>
+        <option value="expense">শুধু ব্যয়</option>
+      </select>
+      <input type="search" id="filterSearch" placeholder="বিবরণ দিয়ে খুঁজুন">
+      <button type="submit">🔍 অনুসন্ধান</button>
+    </form>
+
+    <div id="transactionRoot">
+      <div class="loading-state"><span class="spinner"></span>হিসাবের তথ্য লোড হচ্ছে...</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© <span id="year"></span> ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি</span>
+    <a href="contact.html">যোগাযোগ</a>
+  </div>
+</footer>
+
+<script src="../js/config.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/accounts.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

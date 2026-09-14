@@ -1,0 +1,330 @@
+/* ==========================================================================
+   ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি — Design System
+   Concept: a public "খতিয়ান" (ledger) — the visual language of a village
+   accounting register rendered for the web. Horizontal rules instead of
+   boxed cards, a stamped/ink accent color, serif Bengali headings set like
+   a register title, tabular figures for money. Trust comes from order and
+   legibility, not decoration.
+   ========================================================================== */
+
+:root{
+  /* --- Color: forest green (field/trust) + harvest gold (ledger ink/seal) --- */
+  --green-900:#12332A;
+  --green-700:#1F5C4B;
+  --green-600:#2B7A63;
+  --gold-600:#B8891F;
+  --gold-500:#C9A227;
+  --paper:#F7F6F2;
+  --paper-raised:#FFFFFF;
+  --ink:#1C2620;
+  --ink-soft:#4B564F;
+  --line:#D8D4C8;
+  --line-strong:#B7B29F;
+  --income:#256B4E;
+  --expense:#9C3B34;
+  --danger-bg:#FBEEEC;
+  --income-bg:#EAF3EE;
+
+  --font-display:'Tiro Bangla', 'Noto Serif Bengali', serif;
+  --font-body:'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+  --font-mono:'Noto Sans Bengali', sans-serif;
+
+  --radius-sm:4px;
+  --radius-md:8px;
+  --container:1080px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  color:var(--green-900);
+  font-weight:700;
+  margin:0 0 .4em 0;
+  line-height:1.3;
+}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);}
+h2{font-size:clamp(1.4rem,2.6vw,1.9rem);}
+h3{font-size:1.15rem;}
+p{margin:0 0 1em 0;color:var(--ink-soft);}
+a{color:var(--green-700);}
+img{max-width:100%;display:block;}
+button{font-family:inherit;}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 20px;}
+
+:focus-visible{outline:3px solid var(--gold-500);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+}
+
+/* ---------------- Header / Nav ---------------- */
+.site-header{
+  background:var(--green-900);
+  color:#fff;
+  position:sticky;top:0;z-index:40;
+  border-bottom:3px solid var(--gold-500);
+}
+.site-header .container{
+  display:flex;align-items:center;justify-content:space-between;
+  height:68px;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;min-width:0;}
+.brand img{height:40px;width:40px;border-radius:50%;background:#fff;object-fit:cover;flex-shrink:0;}
+.brand-text{display:flex;flex-direction:column;line-height:1.2;overflow:hidden;}
+.brand-text strong{font-family:var(--font-display);font-size:1.02rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.brand-text span{font-size:.72rem;color:#CFEADD;}
+
+.nav-toggle{
+  display:none;background:none;border:1px solid rgba(255,255,255,.3);
+  color:#fff;padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;
+}
+.main-nav ul{list-style:none;display:flex;gap:2px;margin:0;padding:0;}
+.main-nav a{
+  color:#E8EFEA;text-decoration:none;font-size:.94rem;padding:10px 14px;
+  display:block;border-bottom:2px solid transparent;
+}
+.main-nav a:hover,.main-nav a.active{color:#fff;border-bottom-color:var(--gold-500);}
+
+@media (max-width:860px){
+  .nav-toggle{display:inline-block;}
+  .main-nav{
+    position:absolute;top:68px;left:0;right:0;background:var(--green-900);
+    max-height:0;overflow:hidden;transition:max-height .25s ease;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .main-nav.open{max-height:480px;}
+  .main-nav ul{flex-direction:column;padding:8px 0;}
+  .main-nav a{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+}
+
+/* ---------------- Hero ---------------- */
+.hero{
+  background:linear-gradient(180deg,var(--green-900) 0%,var(--green-700) 100%);
+  color:#fff;padding:64px 0 72px;text-align:center;
+}
+.hero img.logo{
+  height:84px;width:84px;border-radius:50%;margin:0 auto 22px;
+  background:#fff;object-fit:cover;border:3px solid var(--gold-500);
+}
+.hero h1{color:#fff;margin-bottom:.15em;}
+.hero .subunit{
+  font-size:1.05rem;color:var(--gold-500);font-family:var(--font-display);
+  margin-bottom:14px;
+}
+.hero p.desc{color:#DCE9E2;max-width:640px;margin:0 auto 8px;}
+.hero .fy-badge{
+  display:inline-block;margin:14px 0 28px;padding:6px 16px;
+  border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  font-size:.85rem;color:#fff;
+}
+.btn{
+  display:inline-block;background:var(--gold-500);color:var(--green-900);
+  font-weight:700;padding:13px 28px;border-radius:var(--radius-sm);
+  text-decoration:none;border:none;cursor:pointer;font-size:1rem;
+}
+.btn:hover{background:#DDB33A;}
+.btn-outline{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);
+}
+.btn-outline:hover{background:rgba(255,255,255,.08);}
+
+/* ---------------- Sections ---------------- */
+.section{padding:56px 0;}
+.section + .section{border-top:1px solid var(--line);}
+.section-head{margin-bottom:30px;}
+.section-head .eyebrow{color:var(--gold-600);font-size:.8rem;letter-spacing:.02em;}
+
+/* ---------------- Ledger stat row (dashboard) ---------------- */
+.stat-ledger{
+  border-top:2px solid var(--green-900);
+  border-bottom:2px solid var(--green-900);
+}
+.stat-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat-row .stat{
+  padding:22px 20px;border-left:1px solid var(--line);
+}
+.stat-row .stat:first-child{border-left:none;}
+.stat label{
+  display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:8px;
+}
+.stat .amount{
+  font-family:var(--font-display);font-weight:700;font-size:1.7rem;
+  color:var(--green-900);font-variant-numeric:tabular-nums;
+}
+.stat .amount.expense{color:var(--expense);}
+.stat .amount.income{color:var(--income);}
+@media (max-width:760px){
+  .stat-row{grid-template-columns:1fr 1fr;}
+  .stat-row .stat:nth-child(3){border-left:none;}
+}
+
+.budget-bar-wrap{margin-top:26px;}
+.budget-bar-label{
+  display:flex;justify-content:space-between;font-size:.88rem;
+  color:var(--ink-soft);margin-bottom:8px;
+}
+.budget-bar{
+  height:10px;background:#E7E4D9;border-radius:999px;overflow:hidden;
+}
+.budget-bar > span{
+  display:block;height:100%;background:var(--gold-500);border-radius:999px;
+}
+
+/* ---------------- Charts grid ---------------- */
+.chart-grid{
+  display:grid;grid-template-columns:1.3fr 1fr;gap:32px;margin-top:36px;
+}
+@media (max-width:860px){.chart-grid{grid-template-columns:1fr;}}
+.chart-card{
+  background:var(--paper-raised);border:1px solid var(--line);
+  border-radius:var(--radius-md);padding:20px;
+}
+.chart-card h3{margin-bottom:4px;}
+.chart-card .chart-note{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px;}
+.chart-card canvas{max-width:100%;}
+
+/* ---------------- Filters ---------------- */
+.filters{
+  display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 18px;align-items:center;
+}
+.filters select,.filters input[type=search]{
+  font-family:inherit;padding:9px 12px;border:1px solid var(--line-strong);
+  border-radius:var(--radius-sm);background:#fff;color:var(--ink);font-size:.92rem;
+}
+.filters input[type=search]{flex:1;min-width:160px;}
+.filters button{
+  padding:9px 16px;border:1px solid var(--green-700);background:var(--green-700);
+  color:#fff;border-radius:var(--radius-sm);cursor:pointer;
+}
+
+/* ---------------- Transaction table ---------------- */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-md);}
+table.ledger{
+  width:100%;border-collapse:collapse;min-width:720px;background:#fff;
+}
+table.ledger th{
+  text-align:right;font-size:.82rem;color:var(--ink-soft);font-weight:600;
+  padding:12px 14px;border-bottom:2px solid var(--green-900);white-space:nowrap;
+}
+table.ledger th:nth-child(1),table.ledger th:nth-child(2),table.ledger th:nth-child(3){text-align:right;}
+table.ledger td{
+  padding:11px 14px;border-bottom:1px solid var(--line);font-size:.9rem;
+  font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;
+}
+table.ledger tbody tr:hover{background:#F4F2EA;}
+table.ledger td.income{color:var(--income);font-weight:600;}
+table.ledger td.expense{color:var(--expense);font-weight:600;}
+table.ledger td.remarks{white-space:normal;color:var(--ink-soft);}
+.voucher-link{
+  color:var(--green-700);text-decoration:underline;background:none;border:none;
+  cursor:pointer;font-size:.88rem;padding:0;
+}
+.empty-state,.error-state{
+  padding:40px 20px;text-align:center;color:var(--ink-soft);
+}
+.error-state{color:var(--expense);}
+.loading-state{padding:40px 20px;text-align:center;color:var(--ink-soft);}
+.loading-state .spinner{
+  width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--gold-500);
+  border-radius:50%;display:inline-block;margin-inline-end:10px;
+  animation:spin .8s linear infinite;vertical-align:middle;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ---------------- Committee ---------------- */
+.committee-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;
+  margin-top:20px;
+}
+.committee-card{
+  text-align:center;background:var(--paper-raised);border:1px solid var(--line);
+  border-radius:var(--radius-md);padding:22px 14px;
+}
+.committee-card img{
+  width:130px;height:130px;border-radius:50%;object-fit:cover;margin:0 auto 14px;
+  border:3px solid var(--paper);box-shadow:0 0 0 1px var(--line);background:#eee;
+}
+.committee-card.president img{width:150px;height:150px;}
+.committee-card h4{margin-bottom:2px;font-size:1.02rem;}
+.committee-card .role{color:var(--gold-600);font-size:.85rem;}
+.committee-block + .committee-block{margin-top:44px;}
+
+/* ---------------- Cards (org / archive / reports) ---------------- */
+.info-block{margin-bottom:32px;}
+.year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:20px;}
+.year-card{
+  border:1px solid var(--line);border-radius:var(--radius-md);padding:20px;
+  background:var(--paper-raised);
+}
+.year-card h3{margin-bottom:10px;}
+.year-card dl{display:grid;grid-template-columns:1fr auto;gap:6px 10px;margin:0 0 14px;font-size:.88rem;}
+.year-card dt{color:var(--ink-soft);}
+.year-card dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;}
+.year-card .links{display:flex;gap:10px;flex-wrap:wrap;}
+.year-card .links a{
+  font-size:.85rem;border:1px solid var(--green-700);color:var(--green-700);
+  padding:6px 12px;border-radius:var(--radius-sm);text-decoration:none;
+}
+.year-card .links a:hover{background:var(--green-700);color:#fff;}
+
+.report-list{border-top:1px solid var(--line);}
+.report-row{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:16px 0;border-bottom:1px solid var(--line);flex-wrap:wrap;
+}
+.report-row .rtitle{font-weight:600;}
+.report-row .ryear{color:var(--ink-soft);font-size:.85rem;}
+.report-row .rlinks{display:flex;gap:10px;}
+.report-row .rlinks a{
+  font-size:.85rem;text-decoration:none;color:var(--green-700);
+  border:1px solid var(--green-700);padding:6px 12px;border-radius:var(--radius-sm);
+}
+
+/* ---------------- Modal (voucher lightbox) ---------------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(18,51,42,.7);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:#fff;border-radius:var(--radius-md);max-width:560px;width:100%;
+  max-height:86vh;overflow:auto;padding:20px;position:relative;
+}
+.modal-box h3{margin-bottom:14px;}
+.modal-close{
+  position:absolute;top:12px;insetInlineEnd:14px;right:14px;background:none;border:none;
+  font-size:1.4rem;cursor:pointer;color:var(--ink-soft);line-height:1;
+}
+.modal-box img,.modal-box iframe{width:100%;border-radius:var(--radius-sm);border:1px solid var(--line);}
+.modal-box iframe{height:60vh;}
+.modal-box .modal-open-link{display:inline-block;margin-top:14px;}
+
+/* ---------------- Footer ---------------- */
+.site-footer{
+  background:var(--green-900);color:#CFEADD;padding:34px 0;margin-top:40px;
+  font-size:.88rem;
+}
+.site-footer a{color:#fff;}
+.site-footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+.demo-banner{
+  background:#FCF3D6;border-bottom:1px solid #E5C860;color:#5A4A0F;
+  text-align:center;font-size:.82rem;padding:6px 12px;
+}
+
+@media (max-width:600px){
+  .stat .amount{font-size:1.35rem;}
+  .hero{padding:48px 0 56px;}
+}

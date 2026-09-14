@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>অর্থবছরের আর্কাইভ — ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি</title>
+<meta name="description" content="প্রতিটি অর্থবছরের বাজেট, আয়, ব্যয় ও স্থিতির সংক্ষিপ্ত আর্কাইভ।">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="../index.html">
+      <span class="brand-text">
+        <strong>ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি</strong>
+        <span>মাঠের উপকমিটি</span>
+      </span>
+    </a>
+    <button class="nav-toggle" aria-label="মেনু" aria-expanded="false">☰ মেনু</button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="../index.html">হোম</a></li>
+        <li><a href="organization.html">সংগঠন</a></li>
+        <li><a href="committee.html">কমিটি</a></li>
+        <li><a href="accounts.html">আর্থিক হিসাব</a></li>
+        <li><a href="monthly.html">মাসিক হিসাব</a></li>
+        <li><a href="archive.html">অর্থবছরের আর্কাইভ</a></li>
+        <li><a href="reports.html">প্রতিবেদন</a></li>
+        <li><a href="contact.html">যোগাযোগ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h1>অর্থবছরের আর্কাইভ</h1>
+      <p>পূর্ববর্তী অর্থবছরগুলোর হিসাব স্থায়ীভাবে সংরক্ষিত থাকে এবং প্রকাশ্যে দেখা যায়।</p>
+    </div>
+    <div id="archiveRoot">
+      <div class="loading-state"><span class="spinner"></span>লোড হচ্ছে...</div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© <span id="year"></span> ঘিওর কুড়িকাহুনিয়া জন কল্যান সমিতি</span>
+    <a href="contact.html">যোগাযোগ</a>
+  </div>
+</footer>
+
+<script src="../js/config.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/archive.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
