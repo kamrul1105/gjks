@@ -44,7 +44,7 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  font-family:"Hind Siliguri",sans-serif;
+  font-family:"Noto Sans Bengali",sans-serif;
   transition:background .25s ease,color .25s ease;
 }
 img{max-width:100%}
