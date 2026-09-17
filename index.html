@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>কমিটি ওয়েবসাইট</title>
+<meta name="theme-color" content="#0a1c33">
+<link id="favicon" rel="icon" href="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://drive.google.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+(function(){
+  try{
+    var saved = localStorage.getItem('theme');
+    if(saved === 'light' || saved === 'dark'){
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  }catch(e){}
+})();
+</script>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="header-row" style="flex:1;min-width:0;display:flex;align-items:center;gap:16px">
+      <img id="logo" alt="লোগো">
+      <div class="brand-text">
+        <h1 id="siteName">কমিটির নাম</h1>
+        <p id="address">ঠিকানা</p>
+      </div>
+    </div>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="থিম পরিবর্তন করুন">🌙</button>
+    <button id="menuBtn" class="menu-btn" type="button" aria-label="মেনু খুলুন" aria-expanded="false" aria-controls="nav">☰</button>
+  </div>
+</header>
+
+<nav id="nav" class="nav" aria-label="প্রধান মেনু"></nav>
+
+<main>
+
+<section id="home" class="page active">
+  <div id="noticeTicker" class="ticker" style="display:none">
+    <span class="ticker-label">নোটিশ</span>
+    <div class="ticker-track"><span id="tickerText"></span></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-leaders side-left">
+      <p class="leader-group-label">প্রধান কমিটি</p>
+      <div class="leader-pair">
+        <div class="pres">
+          <div class="pres-photo-wrap"><img id="mainPresident" alt=""></div>
+          <h3 id="mainPresidentName"></h3>
+          <p id="mainPresidentRole"></p>
+        </div>
+        <div class="pres">
+          <div class="pres-photo-wrap"><img id="mainSecretary" alt=""></div>
+          <h3 id="mainSecretaryName"></h3>
+          <p id="mainSecretaryRole"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stage">
+      <div class="slider" role="region" aria-roledescription="স্লাইডশো" aria-label="ছবির স্লাইডশো">
+        <div id="slides"></div>
+        <button class="arrow prev" type="button" onclick="moveSlide(-1)" aria-label="আগের ছবি">‹</button>
+        <button class="arrow next" type="button" onclick="moveSlide(1)" aria-label="পরের ছবি">›</button>
+        <div id="dots"></div>
+      </div>
+    </div>
+
+    <div class="hero-leaders side-right">
+      <p class="leader-group-label">উপ কমিটি</p>
+      <div class="leader-pair">
+        <div class="pres">
+          <div class="pres-photo-wrap"><img id="subPresident" alt=""></div>
+          <h3 id="subPresidentName"></h3>
+          <p id="subPresidentRole"></p>
+        </div>
+        <div class="pres">
+          <div class="pres-photo-wrap"><img id="subSecretary" alt=""></div>
+          <h3 id="subSecretaryName"></h3>
+          <p id="subSecretaryRole"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>হিসাবের ড্যাশবোর্ড</h2>
+    <div class="finance-controls">
+      <select id="dashYear" aria-label="ড্যাশবোর্ডের বছর নির্বাচন করুন"></select>
+    </div>
+    <div class="stats">
+      <div><b id="income">৳0.00</b><span>মোট আয়</span></div>
+      <div><b id="expense">৳0.00</b><span>মোট ব্যয়</span></div>
+      <div><b id="balance">৳0.00</b><span>বর্তমান অবস্থা</span></div>
+    </div>
+    <div class="bars">
+      <div class="budget-bar" id="budgetBar" role="img" aria-label="আয়ের তুলনায় ব্যয় ও অবশিষ্টের অনুপাত">
+        <span id="expenseSeg"></span><span id="remainingSeg"></span>
+      </div>
+      <div class="budget-legend">
+        <p><i class="dot dot-expense"></i>ব্যয় <b id="expensePct">0%</b></p>
+        <p><i class="dot dot-remaining"></i>অবশিষ্ট <b id="remainingPct">0%</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>নোটিশ</h2>
+    <div id="noticeList"></div>
+  </section>
+</section>
+
+<section id="about" class="page section">
+  <h2>আমাদের সম্পর্কে</h2>
+  <p id="aboutText"></p>
+</section>
+
+<section id="committee" class="page section">
+  <h2>কমিটি</h2>
+  <h3 class="sub-h">প্রধান কমিটি</h3>
+  <div id="mainMembers" class="grid member-grid"></div>
+  <h3 class="sub-h">উপ-কমিটি</h3>
+  <div id="subMembers" class="grid member-grid"></div>
+</section>
+
+<section id="gallery" class="page section">
+  <h2>গ্যালারি</h2>
+  <div id="galleryGrid" class="grid gallery"></div>
+</section>
+
+<section id="finance" class="page section">
+  <h2>আর্থিক হিসাব</h2>
+  <div class="finance-controls">
+    <input id="search" placeholder="বিবরণ/খাত খুঁজুন" aria-label="খুঁজুন">
+    <select id="yearFilter" aria-label="বছর নির্বাচন করুন"></select>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>তারিখ</th><th>বিবরণ</th><th>খাত</th><th>আয়</th><th>ব্যয়</th><th>মন্তব্য</th><th>ভাউচার</th></tr></thead>
+      <tbody id="txBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="statement" class="page section">
+  <h2>আর্থিক বিবরণী ডাউনলোড</h2>
+  <p>নির্দিষ্ট সময়ের PDF বিবরণী পেতে তারিখ ও পাসওয়ার্ড দিন।</p>
+  <div class="form">
+    <label>শুরুর তারিখ <input type="date" id="from"></label>
+    <label>শেষ তারিখ <input type="date" id="to"></label>
+    <label>পাসওয়ার্ড <input type="password" id="password"></label>
+    <button class="btn-primary" type="button" onclick="makeStatement()">PDF বিবরণী তৈরি করুন</button>
+  </div>
+  <p id="status" class="status-msg" role="status"></p>
+</section>
+
+</main>
+
+<div id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <img id="lightboxImg" alt="">
+  <button class="close-btn" type="button" onclick="closeLightbox()" aria-label="বন্ধ করুন">×</button>
+</div>
+
+<footer id="footer"></footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
